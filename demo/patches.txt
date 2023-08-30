@@ -1,0 +1,2 @@
+[pre_model_sync]
+demo.demo.create_custom_field
