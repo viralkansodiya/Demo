@@ -1,0 +1,43 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-08-31 10:27:44.085377",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "mandatory": 1,
+   "options": "\nPaid\nUnpaid\nPartly Paid\nOverdue",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{}",
+ "modified": "2023-08-31 10:55:35.114018",
+ "modified_by": "Administrator",
+ "module": "Demo",
+ "name": "Sales Invoice",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "Select \n    si.name as \"Sales Invoice:Link/Sales Invoice:100\",\n    si.status as \"Status:Data:100\",\n    si.grand_total as \"Grand Total:Float:100\",\n    si.customer as \"Customer:Link/Customer:200\",\n    si.posting_date as \"Posting Date:Date:100\",\n    sii.item_code as \"Item Code:Link/Item:200\", \n    sii.qty\nFrom\n    `tabSales Invoice` as si\n     left join `tabSales Invoice Item` as sii ON sii.parent = si.name\nwhere \n    si.docstatus = 1 and si.status =%(status)s",
+ "ref_doctype": "Sales Invoice",
+ "report_name": "Sales Invoice",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Employee Self Service"
+  }
+ ]
+}
