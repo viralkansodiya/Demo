@@ -94,7 +94,8 @@ def get_data(filters):
         timesheets_map[row.name] = row
         timesheets_list.append(row.name)
 
-    
+    if not timesheets_list:
+        return []
     condition = ''
     condition += "parent in {} ".format(
                 "(" + ", ".join([f'"{l}"' for l in timesheets_list]) + ")")
