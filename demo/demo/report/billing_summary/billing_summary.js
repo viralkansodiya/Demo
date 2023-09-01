@@ -23,6 +23,20 @@ frappe.query_reports["Billing Summary"] = {
 			label: __("Include Timesheets in Draft Status"),
 			fieldtype: "Check",
 		},
+		{
+			fieldname: "project",
+			label: __("Project"),
+			fieldtype: "Link",
+			options: "Project",
+			
+		},
+		{
+			fieldname: "employee",
+			label: __("Employee"),
+			fieldtype: "Link",
+			options: "Employee",
+			
+		},
 
 	]
 };
