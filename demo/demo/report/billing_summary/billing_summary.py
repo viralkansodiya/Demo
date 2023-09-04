@@ -10,14 +10,14 @@ from frappe.utils import flt, time_diff_in_hours
 
 def execute(filters=None):
     columns, data = [], []
-    columns = get_columns()
+    columns = get_columns(filters)
     data = get_data(filters)
     return columns, data
 
 
 
-def get_columns():
-    return [
+def get_columns(filters):
+    columns = [
         {
             "label": _("Project"),
             "fieldtype": "Link",
@@ -55,6 +55,38 @@ def get_columns():
         },
         {"label": _("Billing Amount"), "fieldtype": "Currency", "fieldname": "amount", "width": 150},
     ]
+    if filters.get('show_in_detail'):
+        columns += [
+
+        {
+            "label": _("From Time"),
+            "fieldtype": "Datetime",
+            "fieldname": "from_time",
+            "width": 200,
+        },
+        {
+            "label": _("to Time"),
+            "fieldtype": "Datetime",
+            "fieldname": "to_time",
+            "width": 200,
+        },
+        {
+            "label": _("Activity Type"),
+            "fieldtype": "Link",
+            "options":"Activity Type",
+            "fieldname": "activity_type",
+            "width": 200,
+        },
+        {
+            "label": _("Task"),
+            "fieldtype": "Datetime",
+            "options":"Task",
+            "fieldname": "task",
+            "width": 200,
+        }
+
+        ]
+    return columns
 
 
 def get_data(filters):
@@ -102,7 +134,8 @@ def get_data(filters):
     if filters.get('project'):
         condition += f"and project = '{filters.get('project')}'"
 
-    timesheet_detail = frappe.db.sql(f"""Select parent , project , billing_hours  , from_time , to_time , hours ,billing_rate,is_billable
+    timesheet_detail = frappe.db.sql(f"""Select parent , project , billing_hours  , from_time , to_time , hours , billing_rate, is_billable,
+                                     activity_type , task 
                                   From `tabTimesheet Detail` 
                                   Where {condition}""",as_dict = 1)
 
@@ -120,10 +153,11 @@ def get_data(filters):
     
     
     for key, value in groupby(INFO, key_func):
+        total_hours = 0
+        total_billing_hours = 0
+        total_amount = 0
+
         for row in list(value):
-            total_hours = 0
-            total_billing_hours = 0
-            total_amount = 0
 
             from_time, to_time = filters.from_date, filters.to_date
 
@@ -137,10 +171,27 @@ def get_data(filters):
                 to_time = row.to_time
 
             activity_duration, billing_duration = get_billable_and_total_duration(row, from_time, to_time)
-            total_hours += activity_duration
-            total_billing_hours += billing_duration
-            total_amount += billing_duration * flt(row.billing_rate)
-        
+            
+            if not filters.get('show_in_detail'):
+                total_hours += activity_duration
+                total_billing_hours += billing_duration
+                total_amount += billing_duration * flt(row.billing_rate)
+                
+            if filters.get('show_in_detail'):
+                data.append({
+                    "project": row.get('project'),
+                    "employee": row.get('employee'),
+                    "employee_name": row.get('employee_name'),
+                    "timesheet": row.get('name'),
+                    "total_billable_hours": billing_duration,
+                    "total_hours": activity_duration,
+                    "amount": billing_duration * flt(row.billing_rate),
+                    "from_time":from_time,
+                    "to_time":to_time,
+                    "activity_type":row.activity_type,
+                    "task":row.task
+                })
+                
         if total_hours:
             data.append(
                 {
@@ -153,6 +204,7 @@ def get_data(filters):
                     "amount": total_amount,
                 }
             )
+
     return data
 
 def get_billable_and_total_duration(activity, start_time, end_time):
@@ -163,5 +215,4 @@ def get_billable_and_total_duration(activity, start_time, end_time):
         billing_duration = activity.billing_hours
         if activity_duration != activity.billing_hours:
             billing_duration = activity_duration * activity.billing_hours / activity.hours
-
     return flt(activity_duration, precision), flt(billing_duration, precision)

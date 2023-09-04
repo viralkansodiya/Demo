@@ -8,20 +8,15 @@ frappe.query_reports["Billing Summary"] = {
 			fieldname:"from_date",
 			label: __("From Date"),
 			fieldtype: "Date",
-			default: frappe.datetime.add_months(frappe.datetime.month_start()),
+			default: frappe.datetime.add_months(frappe.datetime.month_start(), -1),
 			reqd: 1
 		},
 		{
 			fieldname:"to_date",
 			label: __("To Date"),
 			fieldtype: "Date",
-			default: frappe.datetime.add_days(frappe.datetime.month_start() , 30),
+			default: frappe.datetime.add_days(frappe.datetime.month_start(),-1),
 			reqd: 1
-		},
-		{
-			fieldname:"include_draft_timesheets",
-			label: __("Include Timesheets in Draft Status"),
-			fieldtype: "Check",
 		},
 		{
 			fieldname: "project",
@@ -36,6 +31,16 @@ frappe.query_reports["Billing Summary"] = {
 			fieldtype: "Link",
 			options: "Employee",
 			
+		},
+		{
+			fieldname:"include_draft_timesheets",
+			label: __("Show Draft TimeSheets"),
+			fieldtype: "Check",
+		},
+		{
+			fieldname:"show_in_detail",
+			label: __("Show in Detail"),
+			fieldtype: "Check",
 		},
 
 	]
