@@ -55,7 +55,7 @@ def get_columns(filters):
         },
         {"label": _("Billing Amount"), "fieldtype": "Currency", "fieldname": "amount", "width": 150},
     ]
-    if filters.get('show_in_detail'):
+    if filters.get('show_timesheet_detail'):
         columns += [
 
         {
@@ -172,12 +172,12 @@ def get_data(filters):
 
             activity_duration, billing_duration = get_billable_and_total_duration(row, from_time, to_time)
             
-            if not filters.get('show_in_detail'):
+            if not filters.get('show_timesheet_detail'):
                 total_hours += activity_duration
                 total_billing_hours += billing_duration
                 total_amount += billing_duration * flt(row.billing_rate)
                 
-            if filters.get('show_in_detail'):
+            if filters.get('show_timesheet_detail'):
                 data.append({
                     "project": row.get('project'),
                     "employee": row.get('employee'),

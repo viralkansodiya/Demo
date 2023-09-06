@@ -38,8 +38,8 @@ frappe.query_reports["Billing Summary"] = {
 			fieldtype: "Check",
 		},
 		{
-			fieldname:"show_in_detail",
-			label: __("Show in Detail"),
+			fieldname:"show_timesheet_detail",
+			label: __("Show Timesheet Detail"),
 			fieldtype: "Check",
 		},
 
