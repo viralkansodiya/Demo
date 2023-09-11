@@ -11,12 +11,12 @@
  "is_standard": "Yes",
  "modified": "2023-09-01 11:27:02.935419",
  "modified_by": "Administrator",
- "module": "Demo",
- "name": "Billing Summary",
+ "module": "Projects",
+ "name": "Timesheet Billing Summary",
  "owner": "Administrator",
  "prepared_report": 0,
  "ref_doctype": "Timesheet",
- "report_name": "Billing Summary",
+ "report_name": "Timesheet Billing Summary",
  "report_type": "Script Report",
  "roles": [
   {

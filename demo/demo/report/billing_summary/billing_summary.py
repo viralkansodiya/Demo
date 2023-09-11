@@ -46,6 +46,18 @@ def get_columns(filters):
             "options": "Timesheet",
             "width": 150,
         },
+    ]
+    if filters.get('show_timesheet_detail'):
+        columns += [
+             {
+            "label": _("Activity Type"),
+            "fieldtype": "Link",
+            "options":"Activity Type",
+            "fieldname": "activity_type",
+            "width": 200,
+            },
+        ]
+    columns += [
         {"label": _("Working Hours"), "fieldtype": "Float", "fieldname": "total_hours", "width": 150},
         {
             "label": _("Billable Hours"),
@@ -68,13 +80,6 @@ def get_columns(filters):
             "label": _("to Time"),
             "fieldtype": "Datetime",
             "fieldname": "to_time",
-            "width": 200,
-        },
-        {
-            "label": _("Activity Type"),
-            "fieldtype": "Link",
-            "options":"Activity Type",
-            "fieldname": "activity_type",
             "width": 200,
         },
         {

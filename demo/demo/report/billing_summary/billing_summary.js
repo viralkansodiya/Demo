@@ -34,12 +34,12 @@ frappe.query_reports["Billing Summary"] = {
 		},
 		{
 			fieldname:"include_draft_timesheets",
-			label: __("Show Draft TimeSheets"),
+			label: __("Show Draft Timesheets"),
 			fieldtype: "Check",
 		},
 		{
 			fieldname:"show_timesheet_detail",
-			label: __("Show Timesheet Detail"),
+			label: __("Show Detailed Timesheets"),
 			fieldtype: "Check",
 		},
 
