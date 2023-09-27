@@ -1,15 +1,16 @@
 frappe.ui.form.on('Issue', {
    onload: function (frm) {
+      console.log(dfghj)
       frm.trigger('create_button')
    },
    validate: function (frm) {
       frm.trigger("create_button")
    },
    create_button: function (frm) {
-      if (!frm.doc.__isnew()) {
+      if (!frm.doc.__islocal) {
          frm.add_custom_button(__('Create Task'), function () {
             frappe.call({
-               method: "erpnext.support.doctype.issue.issue.get_if_task_exist",
+               method: "demo.demo.issue.get_if_task_exist",
                args: {
                   issue: frm.doc
                },
@@ -45,9 +46,9 @@ frappe.ui.form.on('Issue', {
          primary_action: function () {
             var data = d.get_values();
             frappe.call({
-               method: "erpnext.support.doctype.issue.issue.create_new_task_from_issue",
+               method: "demo.demo.issue.create_new_task_from_issue",
                args: {
-                  self: frm.doc,
+                  issue: frm.doc,
                   assign_to: data.assign_to
                },
                callback: function (r) {

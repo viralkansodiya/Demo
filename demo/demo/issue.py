@@ -10,24 +10,24 @@ def create_new_task_from_issue(issue , assign_to):
     target_doc = None
     doclist = get_mapped_doc(
 		"Issue",
-		issue.name,
+		issue.get('name'),
 		{
 			"Issue": {
 				"doctype": "Task",
-				"validation": {"docstatus": ["=", 1]},
+				
 			}
 		},
 		target_doc,
 		
 	)
-    frappe.throw(str(target_doc))
+    doclist.save()
     args = {
 	        "assign_to": [assign_to],
 	        "doctype": 'Task' ,
-	        "name": doc.name,
+	        "name": doclist.name,
 	}
     add_assignment(args)
-    frappe.msgprint("Task Created Successfully: {0}".format(get_link_to_form("Task",doc.name)))
+    frappe.msgprint("Task Created Successfully: {0}".format(get_link_to_form("Task",doclist.name)))
 
 
 @frappe.whitelist()

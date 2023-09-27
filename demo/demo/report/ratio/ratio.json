@@ -1,0 +1,41 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-09-27 15:05:20.377904",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2023-09-27 15:05:20.377904",
+ "modified_by": "Administrator",
+ "module": "Demo",
+ "name": "Ratio",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Account",
+ "report_name": "Ratio",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Auditor"
+  },
+  {
+   "role": "Purchase User"
+  },
+  {
+   "role": "Employee Self Service"
+  }
+ ]
+}

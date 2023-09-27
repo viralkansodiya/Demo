@@ -31,7 +31,7 @@ app_license = "MIT"
 # include js in doctype views
 doctype_js = {
     "Issue" : "public/js/issue.js",
-    # "Timesheet": "public/js/timesheet.js",
+    "Timesheet": "public/js/timesheet.js",
     "Lead" : "public/js/lead.js",
     "Payment Entry":"public/js/payment_entry.js"
                 }
@@ -123,13 +123,11 @@ doctype_js = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Timesheet": {
+		"validate": "demo.demo.timesheet.set_hours_and_to_time",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
