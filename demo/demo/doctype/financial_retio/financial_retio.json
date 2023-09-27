@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:ratio_type",
  "creation": "2023-09-23 18:15:18.838914",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,16 +9,11 @@
  "engine": "InnoDB",
  "field_order": [
   "company",
-  "ration_type",
+  "ratio_type",
   "nominator",
   "denominator"
  ],
  "fields": [
-  {
-   "fieldname": "ration_type",
-   "fieldtype": "Data",
-   "label": "Ration Type"
-  },
   {
    "fieldname": "nominator",
    "fieldtype": "Table",
@@ -35,14 +31,21 @@
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company"
+  },
+  {
+   "fieldname": "ratio_type",
+   "fieldtype": "Data",
+   "label": "Ratio Type",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-27 15:04:04.347777",
+ "modified": "2023-09-27 17:27:57.344009",
  "modified_by": "Administrator",
  "module": "Demo",
  "name": "Financial Retio",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
