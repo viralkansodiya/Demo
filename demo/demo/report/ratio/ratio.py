@@ -5,7 +5,7 @@ import frappe
 from erpnext.accounts.report.general_ledger.general_ledger import get_result
 from frappe import _
 
-def execute(filters={'from_date': '2023-08-01', 'to_date': '2023-08-31', 'company': 'ViralSpace Pvt Ltd', 'financial_retio': '81175950d7'}):
+def execute(filters=None):
 	columns, data = [], []
 	nominator = get_ledger_of_nominator(filters)
 	denominator = get_ledger_of_denominator(filters)
