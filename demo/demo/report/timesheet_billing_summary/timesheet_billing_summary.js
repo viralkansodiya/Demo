@@ -40,13 +40,4 @@ frappe.query_reports["Timesheet Billing Summary"] = {
 		},
 
 	],
-	// "formatter": function (value, row, column, data, default_formatter) {
-	// 	value = default_formatter(value, row, column, data);
-	// 		if (data.total_billable_hours){
-	// 			if (data[total_billable_hours] > 5) {
-	// 				value = "<span style='color:red'>" + value + "</span>";
-	// 			}
-	// 		}
-	// 	return value;
-	// }
 };

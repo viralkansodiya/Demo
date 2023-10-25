@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-10-24 12:47:36.211167",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "inspection",
+  "move_to_reading_1"
+ ],
+ "fields": [
+  {
+   "fieldname": "inspection",
+   "fieldtype": "Table",
+   "label": "Inspection",
+   "options": "Quality Inspection List"
+  },
+  {
+   "fieldname": "move_to_reading_1",
+   "fieldtype": "Button",
+   "label": "Move to Reading 1"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-10-24 12:47:40.689597",
+ "modified_by": "Administrator",
+ "module": "Demo",
+ "name": "Correction In Quality Inspection",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

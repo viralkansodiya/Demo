@@ -65,7 +65,6 @@ frappe.ui.form.on('Timesheet', {
 								let row = frm.add_child("time_logs");
 								row.from_time = to_time
 								row.to_time = r.message[0];
-								row.custom_time = r.message[1];
 								row.hours=hour;
 								cur_frm.refresh_field('time_logs')
 								d.hide();
